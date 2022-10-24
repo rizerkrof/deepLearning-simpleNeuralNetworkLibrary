@@ -1,0 +1,49 @@
+#+title: Readme
+#+author: Edouard Lacourt
+
+* Table of Contents :TOC_3:noexport:
+- [[#description][Description]]
+- [[#prerequisites][Prerequisites]]
+- [[#documentation][Documentation]]
+  - [[#installation][Installation]]
+  - [[#create-a-neural-network][Create a neural network]]
+  - [[#fit-the-model][Fit the model]]
+  - [[#evaluate-the-model][Evaluate the model]]
+  - [[#run-example-script][Run example script]]
+  - [[#run-test][Run test]]
+
+* Description
+/!\ This repo needs to be refactored
+
+This library allows to create and fit a custom neural network. This library was made during data predictive module course at EPF engineering school. It is a very simple library, you can only create fully connected of neural network. However, it is possible to adjust layer count and size to your needs.
+* Prerequisites
+- python 3.8
+* Documentation
+** Installation
+Install dependencies:
+#+begin_src sh
+pip install -r requirements.txt
+#+end_src
+** Create a neural network
+#+begin_src python
+dnn = DeepNeuralNetwork(n_neurons=[784, 128, 64, 10])
+#+end_src
+You can define the layer count and size in n_neurons. n_neurons list correspond to the network layer list. Each element of the list correspond to the side of the layer. Please note that the first element represent the input layer and the last to the ouput layer. You network needs to have at least 2 layers.
+** Fit the model
+#+begin_src python
+dnn.fit(X_train, Y_train, X_val, Y_val, epochs=5, batch_size=16, l_rate=1e-2)
+#+end_src
+The above expression fit the model called 'dnn'
+** Evaluate the model
+#+begin_src python
+dnn.predict(X_test)
+#+end_src
+The above expression evaluate the model called 'dnn' with the 'X_test' data.
+** Run example script
+#+begin_src sh
+python3 ./example/handWrittenNumbersExample.py
+#+end_src
+** Run test
+#+begin_src sh
+pytest ./tests/*
+#+end_src
